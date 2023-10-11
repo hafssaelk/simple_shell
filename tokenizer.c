@@ -3,7 +3,6 @@
 /**
  * tokenizer - Tokenize a string into an array of strings.
  * @line: The input string to tokenize.
- *
  * Return: An array of strings containing the tokens, or NULL on failure.
  */
 char **tokenizer(char *line)
@@ -16,7 +15,6 @@ char **tokenizer(char *line)
 		return (NULL);
 
 	tmp = _strdup(line);
-
 	token = strtok(tmp, DELIM);
 	if (token == NULL)
 	{
@@ -48,7 +46,6 @@ char **tokenizer(char *line)
 	}
 	free(line), line = NULL;
 	command[i] = NULL;
-
 	return (command);
 }
 
