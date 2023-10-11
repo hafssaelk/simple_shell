@@ -3,7 +3,7 @@
 /**
  * main - Entry point for a simple shell program.
  * @ac: The argument count.
- * @av: The argument vector.
+ * @argv: The argument vector.
  *
  * Return: Always 0 (success).
  */
@@ -11,20 +11,22 @@ int main(int ac, char **argv)
 {
 	char *line = NULL;
 	char **command = NULL;
-	int status = 0;
+	int status = 0, idx = 0;
 	(void)ac;
 
 	while (1)
 	{
 		line = read_the_line();
 		if (line == NULL)
-		{ /* Reached EOF (Ctrl + D) */
+		{
+			/* Reached EOF (Ctrl + D) */
 			if (isatty(STDIN_FILENO))
 			{
 				write(STDOUT_FILENO, "\n", 1);
 			}
-			return status;
+			return (status);
 		}
+		idx++;
 
 		command = tokenizer(line);
 		if (!command)
@@ -32,8 +34,8 @@ int main(int ac, char **argv)
 			continue;
 		}
 
-		status = execute_(command, argv);
+		status = execute_(command, argv, idx);
 	}
-	return 0;
+	return (0);
 }
 
