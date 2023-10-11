@@ -83,24 +83,43 @@ void free2Darray(char **arr);
  * @param argv The argument vector.
  * @return The exit status of the executed command.
  */
-int execute_(char **command, char **argv);
-
-#endif
-extern char **environ;
+int execute_(char **command, char **argv, int idx);
 
 /**
- * Function to free a 2D array of strings.
- * @param arr The array to be freed.
+ * Function to get the value of an environment variable.
+ * @param variable The name of the environment variable.
+ * @return The value of the environment variable.
  */
-void free2Darray(char **arr);
+char *_getenv(char *variable);
 
 /**
- * Function to execute a command.
- * @param command The command to be executed.
- * @param argv The argument vector.
- * @return The exit status of the executed command.
+ * Function to get the full path of a command.
+ * @param command The command to find the path for.
+ * @return The full path of the command, or NULL if not found.
  */
-int execute_(char **command, char **argv);
+char *_get_the_path(char *command);
+
+/**
+ * Function to print an error message.
+ * @param name The name of the program.
+ * @param cmd The command causing the error.
+ * @param idx The index of the command.
+ */
+void print_the_error(char *name, char *cmd, int idx);
+
+/**
+ * Function to convert an integer to a string.
+ * @param n The integer to convert.
+ * @return The converted string.
+ */
+char *_itoa(int n);
+
+/**
+ * Function to reverse a string.
+ * @param str The string to reverse.
+ * @param len The length of the string.
+ */
+void reverse_the_string(char *str, int len);
 
 #endif
 
