@@ -121,5 +121,54 @@ char *_itoa(int n);
  */
 void reverse_the_string(char *str, int len);
 
-#endif
+/**
+ * is_builtin - Check if a command is a built-in shell command.
+ * @command: The command to check.
+ *
+ * Return: 1 if it's a built-in command, 0 otherwise.
+ */
+int is_builtin(char *command);
 
+/**
+ * handle_builtin - Handle the execution of built-in shell commands.
+ * @command: The command to execute.
+ * @argv: The argument vector.
+ * @status: The exit status of the command.
+ * @idx: The command index.
+ */
+void handle_builtin(char **command, char **argv, int *status, int idx);
+
+/**
+ * exit_shell - Handle the built-in "exit" command.
+ * @command: The command to execute.
+ * @argv: The argument vector.
+ * @status: The exit status of the command.
+ * @idx: The command index.
+ */
+void exit_shell(char **command, char **argv, int *status, int idx);
+
+/**
+ * print_env - Handle the built-in "env" command.
+ * @command: The command to execute.
+ * @status: The exit status of the command.
+ */
+void print_env(char **command, int *status);
+
+/**
+ * positive_num - Check if a string represents a positive number.
+ * @str: The input string to check.
+ *
+ * Return: 1 if it's a positive number, 0 otherwise.
+ */
+int positive_num(char *str);
+
+/**
+ * _atoi - Convert a string to an integer.
+ * @str: The string to convert.
+ *
+ * Return: The integer value of the string.
+ */
+int _atoi(char *str);
+
+
+#endif
