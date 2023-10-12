@@ -48,4 +48,3 @@ char **tokenizer(char *line)
 	command[i] = NULL;
 	return (command);
 }
-
