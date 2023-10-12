@@ -44,4 +44,3 @@ int execute_(char **command, char **argv, int idx)
 
 	return (WEXITSTATUS(status));
 }
-
