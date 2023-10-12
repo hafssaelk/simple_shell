@@ -34,8 +34,10 @@ int main(int ac, char **argv)
 			continue;
 		}
 
-		status = execute_(command, argv, idx);
+		if (is_builtin(command[0]))
+			handle_builtin(command, argv, &status, idx);
+		else
+			status = execute_(command, argv, idx);
 	}
-	return (0);
 }
 
