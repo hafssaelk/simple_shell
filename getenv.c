@@ -25,4 +25,3 @@ char *_getenv(char *variable)
 	}
 	return (NULL);
 }
-
