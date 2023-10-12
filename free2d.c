@@ -20,4 +20,3 @@ void free2Darray(char **arr)
 	free(arr);
 	arr = NULL;
 }
-
