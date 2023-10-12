@@ -23,4 +23,3 @@ char *read_the_line(void)
 
 	return (line);
 }
-
