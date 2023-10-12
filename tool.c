@@ -1,27 +1,6 @@
 #include "shell.h"
 
 /**
- * free2Darray - Free a two-dimensional array of strings.
- * @arr: The array to free.
- */
-void free2Darray(char **arr)
-{
-	int i;
-
-	if (!arr)
-		return;
-
-	for (i = 0; arr[i]; i++)
-	{
-		free(arr[i]);
-		arr[i] = NULL;
-	}
-
-	free(arr);
-	arr = NULL;
-}
-
-/**
  * print_the_error - Print an error message to stderr.
  * @name: The name of the program.
  * @cmd: The command that resulted in an error.
@@ -87,4 +66,40 @@ void reverse_the_string(char *str, int len)
 		end--;
 	}
 }
+/**
+ * positive_num - Check if a string represents a positive number.
+ * @str: The string to check.
+ *
+ * Return: 1 if the string is a positive number, 0 otherwise.
+ */
+int positive_num(char *str)
+{
+	int i;
 
+	if (!str)
+		return (0);
+
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+	}
+	return (1);
+}
+
+/**
+ * _atoi - Convert a string to an integer.
+ * @str: The string to convert.
+ *
+ * Return: The integer representation of the string.
+ */
+int _atoi(char *str)
+{
+	int i, num = 0;
+
+	for (i = 0; str[i]; i++)
+	{
+		num = num * 10 + (str[i] - '0');
+	}
+	return (num);
+}
