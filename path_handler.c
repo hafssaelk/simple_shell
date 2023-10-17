@@ -1,41 +1,51 @@
 #include "shell.h"
 
 /**
- * main - Entry point for a simple shell program.
- * @ac: The argument count.
- * @argv: The argument vector.
+ * _get_the_path - Get the full path of a command.
+ * @command: The command to find the path for.
  *
- * Return: Always 0 (success).
+ * Return: The full path of the command, or NULL if not found.
  */
-int main(int ac, char **argv)
+char *_get_the_path(char *command)
 {
-	char *line = NULL;
-	char **command = NULL;
-	int status = 0, idx = 0;
-	(void)ac;
+	char *path_env, *full_cmd, *direc;
+	int i;
+	struct stat st;
 
-	while (1)
+	/* If the command is already a path */
+	for (i = 0; command[i]; i++)
 	{
-		line = read_the_line();
-		if (line == NULL)
+		if (command[i] == '/')
 		{
-			/* Reached EOF (Ctrl + D) */
-			if (isatty(STDIN_FILENO))
-			{
-				write(STDOUT_FILENO, "\n", 1);
-			}
-			return (status);
-		}
-		idx++;
-
-		command = tokenizer(line);
-		if (!command)
-		{
-			continue;
-		}
-		if (is_builtin(command[0]))
-			handle_builtin(command, argv, &status, idx);
-		else
-			status = execute_(command, argv, idx);
+			if (stat(command, &st) == 0) /* If path exists */
+				return (_strdup(command));
+			return (NULL);
 	}
+	}
+
+	path_env = _getenv("PATH");
+	if (!path_env)
+		return (NULL);
+
+	direc = strtok(path_env, ":");
+	while (direc)
+	{
+		full_cmd = malloc(_strlen(direc) + _strlen(command) + 2);
+		if (full_cmd)
+		{
+			_strcpy(full_cmd, direc);
+			_stecat(full_cmd, "/");
+			_stecat(full_cmd, command);
+			if (stat(full_cmd, &st) == 0)
+			{
+				free(path_env);
+				return (full_cmd);
+			}
+			free(full_cmd);
+			full_cmd = NULL;
+			direc = strtok(NULL, ":");
+		}
+	}
+	free(path_env);
+	return (NULL);
 }
